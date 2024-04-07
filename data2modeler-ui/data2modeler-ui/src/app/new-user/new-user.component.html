@@ -1,0 +1,109 @@
+<section class="vh-100 m-1  p-1">
+  <div class="container bg-transparent  h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11 ">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-5">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+
+                <form class="mx-1 mx-md-4" (submit)="onSubmit()" [formGroup]="user">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="register1c" class="form-control" formControlName="name"/>
+                      <label class="form-label" for="register1c">Full Name</label>
+                    </div>
+                  </div>
+                  <div class="text-danger mb-4 me-3" *ngIf="user.controls['name'].invalid &&( user.controls['name'].touched || user.controls['name'].dirty || isFormSubmitted)">
+                    <div  *ngIf="user.controls['name'].errors?.['minlength']">Name should be minimum 3 character long</div>
+                    <div *ngIf="user.controls['name'].errors?.['required']">Name is required</div>
+                    <div *ngIf="user.controls['name'].errors?.['pattern']">Name should start with alphabets</div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="register2c" class="form-control" formControlName="username"/>
+                      <label class="form-label" for="register2c">Username</label>
+                    </div>
+                  </div>
+                  <div class="text-danger mb-4 me-3" *ngIf="user.controls['username'].invalid &&( user.controls['username'].touched || user.controls['username'].dirty || isFormSubmitted)">
+                    <div  *ngIf="user.controls['username'].errors?.['minlength']">Username should be minimum 3 character long</div>
+                    <div *ngIf="user.controls['username'].errors?.['required']">Username is required</div>
+                    <div *ngIf="user.controls['username'].errors?.['usernameTaken']">Username is taken</div>
+                    <div *ngIf="user.controls['username'].errors?.['pattern']">Username should start with alphabets</div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="email" id="register3c" class="form-control" formControlName="email"/>
+                      <label class="form-label" for="register3c">Email address</label>
+                    </div>
+                  </div>
+                  <div class="text-danger mb-4 me-3" *ngIf="user.controls['email'].invalid &&( user.controls['email'].touched || user.controls['email'].dirty || isFormSubmitted)">
+                    <div *ngIf="user.controls['email'].errors?.['required']">Email is required</div>
+                    <div *ngIf="user.controls['email'].errors?.['email']">Email is in incorrect format</div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="register4c" class="form-control" formControlName="password"/>
+                      <label class="form-label" for="register4c">Password</label>
+                    </div>
+                  </div>
+                  <div class="text-danger mb-4 me-3" *ngIf="user.controls['password'].invalid &&( user.controls['password'].touched || user.controls['password'].dirty || isFormSubmitted)">
+                    <div  *ngIf="user.controls['password'].errors?.['minlength']">Password should be minimum 8 character long </div>
+                    <div *ngIf="user.controls['password'].errors?.['required']">Password is required</div>
+                    <div *ngIf="user.controls['password'].errors?.['pattern']">Password must only contain a alphabet, numbers and &#64;, $, !, %, *, ?, & Symbols </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="password" id="register4cd" class="form-control" formControlName="rePassword"/>
+                      <label class="form-label" for="register4cd">Repeat your password</label>
+                    </div>
+                  </div>
+                  <div class="text-danger mb-4 me-3" *ngIf="user.controls['rePassword'].invalid &&( user.controls['rePassword'].touched || user.controls['rePassword'].dirty || isFormSubmitted)">
+                    <div  *ngIf="user.controls['rePassword'].errors?.['minlength']">Password should be minimum 8 character long</div>
+                    <div *ngIf="user.controls['rePassword'].errors?.['required']">Password is required</div>
+                    <div *ngIf="user.controls['rePassword'].errors?.['pattern']">Password must only contain a alphabet, numbers and &#64;, $, !, %, *, ?, & Symbols</div>
+                    <div *ngIf="user.controls['rePassword'].errors?.['passwordMismatch']">Password does not match</div>
+                  </div>
+
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="register3t" formControlName="tnc"/>
+                    <label class="form-check-label" for="register3">
+                      I agree all statements in <a href="#!">Terms of service</a>
+                    </label>
+                  </div>
+                  <div class="text-danger mb-4 me-3" *ngIf="user.controls['tnc'].invalid &&( user.controls['tnc'].touched || user.controls['tnc'].dirty || isFormSubmitted)">
+                    <div *ngIf="user.controls['tnc'].errors?.['required']">You must accept the terms and condition for registration</div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                  </div>
+
+                </form>
+
+              </div>
+              <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                  class="img-fluid" alt="Register vector image">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

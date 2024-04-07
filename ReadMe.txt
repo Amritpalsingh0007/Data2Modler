@@ -54,7 +54,7 @@ Step #1 - create models folder and add files of the model you want with followin
 
 Step #2 - 'npm i mongoose' for mongodb driver. run this command in data2modler-api folder
 
-Step #3 - after installing mongoose you will have to write code for making model for example : 
+Step #3 - after installing mongoose you will have to write code for making model inside nameofmodel.model.js in models folders (if folder is not created then just create and add files for model) for example : 
             const mongoose = require("mongoose");
 
             const usersSchema = mongoose.Schema({
@@ -67,3 +67,35 @@ Step #3 - after installing mongoose you will have to write code for making model
             const usersModel = mongoose.model("Users", usersSchema);
             
             module.exports = usersModel;
+Step #4 -  after creating the model.js files now create corresponding files in routes folder for each model add the users.js code to this files for the time being.
+
+Step #5 - Now go to app.js and add routes for each model to it as shown below : 
+            var modelNamesRouter = require('./routes/modelfileName');
+
+Step #6 - now each model file import the corresponding model
+
+
+------------------Lazy loading modules and routing------------------------
+inside data2modler-ui
+
+Step #1 - run the command "ng g module modelName" this will generate module
+
+Step#2 - add routing , to add routes go to app.routes.ts and in the const routes list add routes as shown below
+            {path: 'pathurl', component: NameOfComponent} //this is normal loading routing 
+            {path: 'pathurl', loadChildren: () => import('./pathofthecomponent/NameOfComponent.module').then(m => m.NameOfComponent)} //this is lazy loading
+
+            Note : same syntax for the routing of modules
+
+Step#3 - now go to the module folder and generate the component that you want related to that module. Note "you must add component in the declaration of the module.ts file of the module"
+
+
+------------------------------------API-connecting to the backend------------------------------
+
+Step#1 - first we need to install the mongoose in data2modler-api if it is not already installed just run this command anyway
+            "npm i mongoose"
+
+Step#2 - now in app.js we will make connection to the db.
+        var mongoose = require('mongoose');
+        mongoose.connect("mongodb://localhost:Data2Modler);
+
+Step#3 - 

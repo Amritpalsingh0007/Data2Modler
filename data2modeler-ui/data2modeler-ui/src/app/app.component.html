@@ -1,3 +1,8 @@
 <app-header></app-header>
-<h1 class="bg-primary fluid">Hello how its working?</h1>
-<router-outlet></router-outlet>
+<div class="container-fluid d-flex flex-column justify-content-center align-items-center" style="min-height: 42vh;">
+    <router-outlet></router-outlet>
+</div>
+<div class="container-fluid bg-white" style="min-height: 42vh;">
+   <router-outlet name="OutletDesc"></router-outlet>
+</div>
+<app-footer></app-footer>
